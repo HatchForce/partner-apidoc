@@ -46,7 +46,7 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Jobhuk API! You can use our API to access Jobhuk API endpoints, you publish your jobs in our website and get candidates.</p>
+<p>Welcome to the Jobhuk API! You can use our API to access Jobhuk Partner API endpoints, you can publish your client jobs in our website and get/submit candidates.</p>
 
 <p>We have language bindings in Shell and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
@@ -57,11 +57,12 @@
 </blockquote>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'https://api.jobhuk.com/partners/companies.json'</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'https://api.jobhuk.com/partners/companies.json?client_id=client_id'</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">companies</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies.json"</span>
-  -H <span class="s2">"Token: API_TOKEN"</span>  
+<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies.json?client_id=client_id"</span><span class="se">\</span>
+  -H <span class="s2">"Token: API_TOKEN"</span><span class="se">\ </span>
+  -H <span class="s2">"Accept: application/vnd.jobhuk.v1"</span>
 </code></pre>
 
 <blockquote>
@@ -85,10 +86,10 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="list-of-companies">List of Companies</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'https://api.jobhuk.com/partners/companies.json'</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'https://api.jobhuk.com/partners/companies.json?client_id=client_id'</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">companies</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies.json"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies.json?client_id=client_id"</span>
   -H <span class="s2">"Token: API_TOKEN"</span>  
 </code></pre>
 
@@ -141,10 +142,10 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="create-company">Create Company</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/companies.json"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">body: </span><span class="p">{</span><span class="ss">company: </span><span class="p">{</span><span class="ss">name: </span><span class="s2">"jobhuk"</span><span class="p">,</span> <span class="ss">website: </span><span class="s2">"http://jobhuk.com"</span><span class="p">,</span> <span class="ss">phone: </span><span class="mi">8558558359</span><span class="p">,</span> <span class="ss">company_type: </span><span class="s2">"staffing"</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">}</span> <span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/companies.json?client_id=client_id"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">body: </span><span class="p">{</span><span class="ss">company: </span><span class="p">{</span><span class="ss">name: </span><span class="s2">"jobhuk"</span><span class="p">,</span> <span class="ss">website: </span><span class="s2">"http://jobhuk.com"</span><span class="p">,</span> <span class="ss">phone: </span><span class="mi">8558558359</span><span class="p">,</span> <span class="ss">company_type: </span><span class="s2">"staffing"</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">}</span> <span class="p">})</span>
 <span class="n">company</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies.json"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies.json?client_id=client_id"</span>
   -X POST 
   -H <span class="s2">"Token:TW6SV34JL+M/WaVMY0tytrII2PJ1xAjSkV73qq2Gmzgv+8q0zSeIhijCLVSc9eSEb9jjuug/8ZtucVSacMFgeA=="</span>
   --data <span class="s2">"company[name]=test110&amp;company[website]=test110.com&amp;company[phone]=1234567890"</span> 
@@ -182,7 +183,7 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.jobhuk.com/partners/companies.json</code></p>
+<p><code class="prettyprint">POST https://api.jobhuk.com/partners/companies.json?client_id=client_id</code></p>
 
 <h3 id="post-parameters">POST Parameters</h3>
 
@@ -288,10 +289,10 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="get-company">Get Company</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'https://api.jobhuk.com/partners/companies/1281.json'</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'https://api.jobhuk.com/partners/companies/1281.json?client_id=client_id'</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">companies</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies/1281.json"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies/1281.json?client_id=client_id"</span>
   -H <span class="s2">"Token: API_TOKEN"</span>
 </code></pre>
 
@@ -330,7 +331,7 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.jobhuk.com/partners/companies/&lt;id&gt;.json</code></p>
+<p><code class="prettyprint">GET https://api.jobhuk.com/partners/companies/&lt;id&gt;.json?client_id=client_id</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -351,10 +352,10 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="edit-company">Edit Company</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/companies/1281.json"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">body: </span><span class="p">{</span><span class="ss">company: </span><span class="p">{</span><span class="ss">name: </span><span class="s2">"jobhuk"</span><span class="p">,</span> <span class="ss">website: </span><span class="s2">"http://jobhuk.com"</span><span class="p">,</span> <span class="ss">phone: </span><span class="mi">8558558359</span><span class="p">,</span> <span class="ss">company_type: </span><span class="s2">"staffing"</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">}</span> <span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/companies/1281.json?client_id=client_id"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">body: </span><span class="p">{</span><span class="ss">company: </span><span class="p">{</span><span class="ss">name: </span><span class="s2">"jobhuk"</span><span class="p">,</span> <span class="ss">website: </span><span class="s2">"http://jobhuk.com"</span><span class="p">,</span> <span class="ss">phone: </span><span class="mi">8558558359</span><span class="p">,</span> <span class="ss">company_type: </span><span class="s2">"staffing"</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">}</span> <span class="p">})</span>
 <span class="n">company</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies/1281.json"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://api.jobhuk.com/partners/companies/1281.json?client_id=client_id"</span>
   -X POST 
   -H <span class="s2">"Token:TW6SV34JL+M/WaVMY0tytrII2PJ1xAjSkV73qq2Gmzgv+8q0zSeIhijCLVSc9eSEb9jjuug/8ZtucVSacMFgeA=="</span>
   --data <span class="s2">"company[name]=test110&amp;company[website]=test110.com&amp;company[phone]=1234567890"</span> 
@@ -396,7 +397,7 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PUT https://api.jobhuk.com/partners/companies/&lt;id&gt;.json</code></p>
+<p><code class="prettyprint">PUT https://api.jobhuk.com/partners/companies/&lt;id&gt;.json?client_id=client_id</code></p>
 
 <h3 id="post-parameters">POST Parameters</h3>
 
@@ -509,10 +510,10 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="all-jobs">All Jobs</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs.json"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs.json?client_id=client_id"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">jobs</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs.json
+<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs.json?client_id<span class="o">=</span>client_id
   -H <span class="s2">"Token: API_TOKEN"</span>
 </code></pre>
 
@@ -592,15 +593,15 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.jobhuk.com/partners/jobs.json</code></p>
+<p><code class="prettyprint">GET https://api.jobhuk.com/partners/jobs.json?client_id=client_id</code></p>
 
 <h2 id="my-jobs">My Jobs</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/my_jobs.json"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/my_jobs.json?client_id=client_id"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">jobs</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/my_jobs.json
+<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/my_jobs.json?client_id<span class="o">=</span>client_id
   -H <span class="s2">"Token: API_TOKEN"</span>
 </code></pre>
 
@@ -680,15 +681,15 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.jobhuk.com/partners/my_jobs.json</code></p>
+<p><code class="prettyprint">GET https://api.jobhuk.com/partners/my_jobs.json?client_id=client_id</code></p>
 
 <h2 id="create-job">Create Job</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs.json.json"</span><span class="p">,</span> <span class="p">{</span><span class="ss">body: </span><span class="p">{</span><span class="ss">job: </span><span class="p">{</span><span class="ss">company_id: </span><span class="mi">297</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Senior Software Engineer'</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'This is a senior software engineer position to support the software development for field portable analytical instruments...'</span><span class="p">,</span> <span class="ss">location: </span><span class="s1">'Austin, TX'</span><span class="p">,</span> <span class="ss">job_type: </span><span class="s1">'FullTime'</span><span class="p">,</span> <span class="ss">comp_range: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">compensation: </span><span class="mi">100000</span><span class="p">,</span> <span class="ss">finders_fee_type: </span><span class="s1">'percentage'</span><span class="p">,</span> <span class="ss">finders_fee: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">skills: </span><span class="s1">'Java, Oracle'</span><span class="p">,</span> <span class="ss">industry: </span><span class="s1">'engineering'</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="no">API_TOKEN</span><span class="p">}})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs.json?client_id=client_id.json?client_id=client_id"</span><span class="p">,</span> <span class="p">{</span><span class="ss">body: </span><span class="p">{</span><span class="ss">job: </span><span class="p">{</span><span class="ss">company_id: </span><span class="mi">297</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Senior Software Engineer'</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'This is a senior software engineer position to support the software development for field portable analytical instruments...'</span><span class="p">,</span> <span class="ss">location: </span><span class="s1">'Austin, TX'</span><span class="p">,</span> <span class="ss">job_type: </span><span class="s1">'FullTime'</span><span class="p">,</span> <span class="ss">comp_range: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">compensation: </span><span class="mi">100000</span><span class="p">,</span> <span class="ss">finders_fee_type: </span><span class="s1">'percentage'</span><span class="p">,</span> <span class="ss">finders_fee: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">skills: </span><span class="s1">'Java, Oracle'</span><span class="p">,</span> <span class="ss">industry: </span><span class="s1">'engineering'</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="no">API_TOKEN</span><span class="p">}})</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs.json
+<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs.json?client_id<span class="o">=</span>client_id
   -X POST
   -H <span class="s2">"Token: API_TOKEN"</span>
   --data <span class="s2">"job[company_id]=297&amp;job[title]=Senior Software Engineer&amp;job[description]=This is a senior software engineer position to support the software development for field portable analytical instruments...&amp;job[location]=Austin, TX&amp;job[job_type]=FullTime&amp;job[comp_range]=5&amp;job[compensation]=100000&amp;job[finders_fee_type]=percentage&amp;job[finders_fee]=5&amp;job[skills]=Java, Oracle&amp;job[industry]=engineering"</span>
@@ -763,7 +764,7 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.jobhuk.com/partners/jobs.json</code></p>
+<p><code class="prettyprint">POST https://api.jobhuk.com/partners/jobs.json?client_id=client_id</code></p>
 
 <h3 id="post-parameters">POST Parameters</h3>
 
@@ -894,10 +895,10 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="get-job">Get Job</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1318.json"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1318.json?client_id=client_id"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1318.json
+<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1318.json?client_id<span class="o">=</span>client_id
   -H <span class="s2">"Token:API_TOKEN"</span>
 </code></pre>
 
@@ -969,7 +970,7 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.jobhuk.com/partners/jobs/&lt;id&gt;.json</code></p>
+<p><code class="prettyprint">GET https://api.jobhuk.com/partners/jobs/&lt;id&gt;.json?client_id=client_id</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -990,10 +991,10 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="edit-job">Edit Job</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1318.json"</span><span class="p">,</span> <span class="p">{</span><span class="ss">body: </span><span class="p">{</span><span class="ss">job: </span><span class="p">{</span><span class="ss">company_id: </span><span class="mi">1281</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Senior Software Engineer'</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'This is a senior software engineer position to support the software development for field portable analytical instruments...'</span><span class="p">,</span> <span class="ss">location: </span><span class="s1">'Austin, TX'</span><span class="p">,</span> <span class="ss">job_type: </span><span class="s1">'FullTime'</span><span class="p">,</span> <span class="ss">comp_range: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">compensation: </span><span class="mi">100000</span><span class="p">,</span> <span class="ss">finders_fee_type: </span><span class="s1">'percentage'</span><span class="p">,</span> <span class="ss">finders_fee: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">skills: </span><span class="s1">'Java, Oracle'</span><span class="p">,</span> <span class="ss">industry: </span><span class="s1">'engineering'</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="no">API_TOKEN</span><span class="p">}})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1318.json?client_id=client_id"</span><span class="p">,</span> <span class="p">{</span><span class="ss">body: </span><span class="p">{</span><span class="ss">job: </span><span class="p">{</span><span class="ss">company_id: </span><span class="mi">1281</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Senior Software Engineer'</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'This is a senior software engineer position to support the software development for field portable analytical instruments...'</span><span class="p">,</span> <span class="ss">location: </span><span class="s1">'Austin, TX'</span><span class="p">,</span> <span class="ss">job_type: </span><span class="s1">'FullTime'</span><span class="p">,</span> <span class="ss">comp_range: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">compensation: </span><span class="mi">100000</span><span class="p">,</span> <span class="ss">finders_fee_type: </span><span class="s1">'percentage'</span><span class="p">,</span> <span class="ss">finders_fee: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">skills: </span><span class="s1">'Java, Oracle'</span><span class="p">,</span> <span class="ss">industry: </span><span class="s1">'engineering'</span><span class="p">}},</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="no">API_TOKEN</span><span class="p">}})</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1318.json
+<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1318.json?client_id<span class="o">=</span>client_id
   -X PUT
   -H <span class="s2">"Token: API_TOKEN"</span>
   --data <span class="s2">"job[company_id]=1281&amp;job[title]=Senior Software Engineer&amp;job[description]=This is a senior software engineer position to support the software development for field portable analytical instruments...&amp;job[location]=Austin, TX&amp;job[job_type]=FullTime&amp;job[comp_range]=5&amp;job[compensation]=100000&amp;job[finders_fee_type]=percentage&amp;job[finders_fee]=5&amp;job[skills]=Java, Oracle&amp;job[industry]=engineering"</span>
@@ -1067,7 +1068,7 @@ You must replace `API_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PUT https://api.jobhuk.com/partners/jobs/&lt;id&gt;.json</code></p>
+<p><code class="prettyprint">PUT https://api.jobhuk.com/partners/jobs/&lt;id&gt;.json?client_id=client_id</code></p>
 
 <h3 id="post-parameters">POST Parameters</h3>
 
@@ -1203,9 +1204,9 @@ You must replace `API_TOKEN` with your personal API key.
 <h2 id="delete-job">Delete Job</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1318.json"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1318.json?client_id=client_id"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1318.json
+<pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1318.json?client_id<span class="o">=</span>client_id
   -X DELETE
   -H <span class="s2">"Token: API_TOKEN"</span>
 
@@ -1225,7 +1226,7 @@ This operation is irreversible.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">DELETE https://api.jobhuk.com/partners/jobs/&lt;id&gt;.json</code></p>
+<p><code class="prettyprint">DELETE https://api.jobhuk.com/partners/jobs/&lt;id&gt;.json?client_id=client_id</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1360,7 +1361,7 @@ This operation is irreversible.</p>
 <h2 id="all-candidates">All Candidates</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1281/candidates"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1281/candidates"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">candidates</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
 <pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1281/candidates 
@@ -1483,7 +1484,7 @@ This operation is irreversible.</p>
 <h2 id="submitted-candidates">Submitted Candidates</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1281/submitted_candidates"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1281/submitted_candidates"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">candidates</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
 <pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1281/submitted_candidates 
@@ -1606,7 +1607,7 @@ This operation is irreversible.</p>
 <h2 id="get-candidate">Get Candidate</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1281/candidates/3417"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/jobs/1281/candidates/3417"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">candidates</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
 <pre><code class="highlight shell">curl https://api.jobhuk.com/partners/jobs/1281/candidates/3417 
@@ -1694,7 +1695,7 @@ This operation is irreversible.</p>
 <h2 id="get-industries">Get Industries</h2>
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/industries"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"https://api.jobhuk.com/partners/industries"</span><span class="p">,</span> <span class="ss">headers: </span><span class="p">{</span><span class="s2">"Token"</span> <span class="o">=&gt;</span> <span class="s2">"API_TOKEN"</span><span class="p">,</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/vnd.jobhuk.v1"</span><span class="p">})</span>
 <span class="n">candidates</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
 <pre><code class="highlight shell">curl https://api.jobhuk.com/partners/industries 
