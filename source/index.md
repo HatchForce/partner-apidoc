@@ -144,10 +144,28 @@ curl "https://api.jobhuk.com/partners/companies.json?client_id=<client_id>"\
             "verified": false
         },
         {
-            "short_description": "venkysoft",
-            "long_description": "venkysoft is a austin based comapany",
-            "year_founded": "2010"
-        }
+                    "short_description": "jobhuk",
+                    "long_description": "Jobhuk is an austin based company",
+                    "year_founded": "2005",
+                    "logo": "https://jobhuk.s3.amazonaws.com/uploads/company_images/company/image/1282/header_logo-1dc784d557ca8383748e986a661bd504.png",
+                    "company_type": "employer",
+                    "id": 1282,
+                    "name": "Jobhuk",
+                    "address": "#302 ",
+                    "website": "www.jobhuk.com",
+                    "phone": "1234567890",
+                    "fax": "9034785355",
+                    "city": "Austin",
+                    "state": "TX",
+                    "zip": "78703",
+                    "created_at": "2015-04-28T06:18:05-05:00",
+                    "social_profile_links": null,
+                    "email": "care@jobhuk.com",
+                    "about_team": "jobhuk.com",
+                    "tag_line": "Jobhuk",
+                    "about_benefits": "jobhuk.com",
+                    "verified": false
+                }
     ]
 }
 ```
@@ -395,12 +413,80 @@ curl https://api.jobhuk.com/partners/jobs.json?client_id=<client_id>\
 ```json
 {
     "successful": true,
-    "count": 2,
+    "count": 4,
     "jobs": [
         {
-            "id": 1318,
-            "company_id": 1281,
-            "title": "Ruby Senior Programmer ",
+            "id": 1328,
+            "company_id": 1295,
+            "title": "Java Developer !!",
+            "location": "Auxtin",
+            "description": "Java Programmer",
+            "job_type": "FullTime",
+            "comp_range": 0,
+            "show_market_place": true,
+            "hide_salary": false,
+            "active": true,
+            "joining_date": null,
+            "travel_percentage": null,
+            "relocation": null,
+            "payment_duration": "60",
+            "city": "Austin",
+            "state": "TX",
+            "country": "United States",
+            "country_code": null,
+            "zip_code": null,
+            "client_name": null,
+            "compensation": 100000,
+            "finders_fee_amount": "7200.0",
+            "finders_fee": 9,
+            "finders_fee_type": "percentage",
+            "hourly_rate": null,
+            "duration": null,
+            "duration_type": null,
+            "skills": "ruby, rails, jquery, mysql",
+            "industry": {
+                "id": 181,
+                "name": "it industry"
+            }
+        },
+        {
+            "id": 1327,
+            "company_id": 1295,
+            "title": "Senior Java Developer !!",
+            "location": "Auxtin",
+            "description": "Java Programmer",
+            "job_type": "FullTime",
+            "comp_range": 0,
+            "show_market_place": true,
+            "hide_salary": false,
+            "active": true,
+            "joining_date": null,
+            "travel_percentage": null,
+            "relocation": null,
+            "payment_duration": "60",
+            "city": "Austin",
+            "state": "TX",
+            "country": "United States",
+            "country_code": null,
+            "zip_code": null,
+            "client_name": null,
+            "compensation": 100000,
+            "finders_fee_amount": "7200.0",
+            "finders_fee": 9,
+            "finders_fee_type": "percentage",
+            "hourly_rate": null,
+            "duration": null,
+            "duration_type": null,
+            "skills": "ruby, rails, jquery, mysql",
+            "industry": {
+                "id": 181,
+                "name": "it industry"
+            }
+        },
+        {
+            "id": 1325,
+            "company_id": 1295,
+            "title": "Ruby Programmer !!",
             "location": "Auxtin",
             "description": "Ruby Programmer ",
             "job_type": "FullTime",
@@ -430,11 +516,6 @@ curl https://api.jobhuk.com/partners/jobs.json?client_id=<client_id>\
                 "id": 181,
                 "name": "it industry"
             }
-        },
-        {
-          "id": 1317,
-          "title": "Ruby Programmer ",
-          "location": "Auxtin"          
         }
     ]
 }
@@ -468,16 +549,15 @@ curl https://api.jobhuk.com/partners/jobs.json?client_id=<client_id>\
 ```json
 {
     "successful": true,
-    "code": 200,
     "job": {
-        "id": 1318,
-        "title": "Ruby Programmer ",
+        "id": 1328,
+        "title": "Java Developer !!",
         "location": "Auxtin",
-        "description": "Ruby Programmer ",
+        "description": "Java Programmer",
         "job_type": "FullTime",
         "comp_range": 0,
         "show_market_place": true,
-        "hide_salary": true,
+        "hide_salary": false,
         "active": true,
         "joining_date": null,
         "travel_percentage": null,
@@ -489,8 +569,8 @@ curl https://api.jobhuk.com/partners/jobs.json?client_id=<client_id>\
         "country_code": null,
         "zip_code": null,
         "client_name": null,
-        "compensation": 120000,
-        "finders_fee_amount": "8640.0",
+        "compensation": 100000,
+        "finders_fee_amount": "7200.0",
         "finders_fee": 9,
         "finders_fee_type": "percentage",
         "hourly_rate": null,
@@ -502,27 +582,28 @@ curl https://api.jobhuk.com/partners/jobs.json?client_id=<client_id>\
             "name": "it industry"
         },
         "company": {
-            "short_description": "jobhukapi",
-            "long_description": "Jobhuk API is an austin based company",
-            "year_founded": "2010",
-            "logo": "https://jobhuk.s3.amazonaws.com/uploads/company_images/company/image/1281/header_logo-1dc784d557ca8383748e986a661bd504.png",
-            "company_type": "employer",
-            "id": 1281,
-            "name": "jobhukapi test",
-            "address": "suite no 302",
+            "id": 1295,
+            "name": "Jobhuk API",
+            "address": "suite 305",
             "website": "www.jobhukapi.com",
-            "phone": "1234567890",
-            "fax": "0987654321",
-            "city": "Austin",
-            "state": "TX",
-            "zip": "78703",
-            "created_at": "2015-04-20T06:18:05-05:00",
+            "phone": "1212121212",
+            "fax": "12112121212",
+            "city": "TX",
+            "state": "auxtin",
+            "zip": "121212",
+            "created_at": "2015-04-28T01:16:55-05:00",
             "social_profile_links": null,
-            "email": "care@jobhukapi.com",
-            "about_team": "jobhukapi",
-            "tag_line": "jobhukapi",
-            "about_benefits": "jobhukapi",
-            "verified": false
+            "email": "veky.g.com",
+            "about_team": "Jobhuk API",
+            "tag_line": "Jobhuk API",
+            "about_benefits": "Jobhuk API",
+            "verified": false,
+            "user_id": 7913,
+            "short_description": "Jobhuk API",
+            "long_description": "Jobhuk API",
+            "year_founded": "2015",
+            "logo": "https://jobhuk.com/assets/company.png",
+            "company_type": "staffing"
         }
     }
 }
